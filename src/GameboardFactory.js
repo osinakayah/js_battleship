@@ -1,7 +1,8 @@
 import ShipFactory from './ShipFactory'
 import {VERTICAL, HORIZONTAL } from "./config";
+import {renderHitBoard, renderMissBoard} from './DOMModule'
 
-const GameBoardFactory = function () {
+const GameBoardFactory = function (container) {
     const gameBoard = [];
     const addShipToGameBoard = (ship, startingPosition, axis) => {
         ship.setPosition(startingPosition, axis);
@@ -41,18 +42,42 @@ const GameBoardFactory = function () {
     const ships = createShips();
 
     const receiveAttack = (position) => {
-        ships.forEach((ship)=> {
-            ship.hit(position);
-        });
+
+        for (let i = 0; i < ships.length; i ++) {
+            const ship = ships[i];
+            if (ship.hit(position)) {
+                renderHitBoard(container, position);
+                return true;
+            }
+        }
+
+        renderMissBoard(container, position);
+        return false
     }
 
     const getShips = () => ships
-    const getGameBoard = () => gameBoard
+    const getGameBoard = () => gameBoard;
+
+    const isAllShipsSunk = () => {
+        const numberOfShips = gameBoard.length;
+        let numberOfShipsSank = 0
+        for (let i = 0; i < ships.length; i ++) {
+            const ship = ships[i];
+            if (ship.isSunk()) {
+                numberOfShipsSank++;
+            }
+        }
+
+        return numberOfShips === numberOfShipsSank;
+    }
 
     return {
         getShips,
         receiveAttack,
-        getGameBoard
+        getGameBoard,
+        container,
+        isAllShipsSunk,
+        gameBoard
     }
 }
 
