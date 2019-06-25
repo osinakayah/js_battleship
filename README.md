@@ -3,6 +3,8 @@
 
 A battleship game implemented with vanilla javascript where users can take turns to hit each other ships
 
+#Todo Features
+* Allow users rearrange ships before starting game
 
 ### Steps
 
