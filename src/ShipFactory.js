@@ -1,27 +1,29 @@
 import {VERTICAL, GRID, HORIZONTAL} from "./config";
-import CellFactory from './CellFactory'
 
 const ShipFactory = function (length) {
     const positions = [];
     const hitPositions = [];
     const hit = (number) => {
-        positions.forEach((cell) => {
-            if (cell.position === number) {
-                hitPositions.push(CellFactory(number, true));
+        for (let i = 0; i < positions.length; i++ ) {
+            const cell = positions[i];
+            if (cell == number) {
+                hitPositions.push(number);
+                return true;
             }
-        });
+        }
+        return false;
     }
     const isSunk = () => hitPositions.length === length
 
     const setVerticalPositions = (startingPosition, length) => {
         for(let i = 0; i < length; i++) {
-            positions.push(CellFactory(startingPosition+(i * GRID), false))
+            positions.push(startingPosition+(i * GRID))
         }
         return positions;
     }
     const setHorizontalPositions = (startingPosition, length) => {
         for (let i = 0; i < length; i ++) {
-            positions.push(CellFactory(startingPosition + i, false));
+            positions.push(startingPosition + i);
         }
         return positions;
     }

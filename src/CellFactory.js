@@ -1,8 +1,8 @@
-const CellFactory = function (position, isHit) {
-    return {
-        position,
-        isHit
-    }
-}
-
-export default  CellFactory
+// const CellFactory = function (position, isHit) {
+//     return {
+//         position,
+//         isHit
+//     }
+// }
+//
+// export default  CellFactory

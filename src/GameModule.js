@@ -1,26 +1,34 @@
 import  PlayerFactory from './PlayerFactory'
 import DOMModule from './DOMModule';
 import GameBoardFactory from "./GameboardFactory";
-import {GRID} from "./config";
 const GameModule = function () {
 
-    const playerOneBoard = GameBoardFactory(GRID)
-    const playerTwoBoard = GameBoardFactory(GRID);
 
-    const playerOne = PlayerFactory("Computer", playerTwoBoard);
-    const playerTwo = PlayerFactory("Human", playerOneBoard);
+
+    const playerOneBoard = GameBoardFactory('player-one');
+    const playerTwoBoard = GameBoardFactory('player-two');
+
+
+
+    const playerOne = PlayerFactory(playerTwoBoard, "Player One");
+    const playerTwo = PlayerFactory(playerOneBoard, "Player Two");
+
+    const domModule = DOMModule(playerOne, playerTwo);
+
+    playerTwo.setClient(true);
 
     playerOne.setTurn(false);
     playerTwo.setTurn(false);
 
 
     const start = () => {
-        playerOne.setTurn(true);
-        DOMModule(playerOne, playerTwo).init();
+        playerTwo.setTurn(true);
+        domModule.init();
+
     }
-   return {
+    return {
         start
-   }
+    }
 }()
 
 export  default GameModule;

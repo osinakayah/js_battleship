@@ -1,5 +1,6 @@
 import {GRID} from "./config";
 
+
 const DOMMOdule = function (playerOne, playerTwo) {
 
     const ONE_HALF = playerOne.enemyGameBoard.container;
@@ -36,7 +37,7 @@ const DOMMOdule = function (playerOne, playerTwo) {
                 }
                 playerOne.toggleTurn();
                 playerTwo.toggleTurn();
-
+                playerTwo.getTurn() ? alert('Player Two turn'): alert('Player One turn')
                 hideShipsBasedOnTurns();
             }
 
@@ -58,11 +59,12 @@ const DOMMOdule = function (playerOne, playerTwo) {
         return el;
     }
 
+
     const drawBoard = (container) => {
         for (let i = 0; i < GRID; i++) {
             const row = createRowElement();
             for (let j = 0; j < GRID; j++) {
-                const position = (${i}${j})
+                const position = (`${i}${j}`)
                 row.append(createCellElement(container + '-' + parseInt(position), position));
             }
             document.getElementById(container).append(row)
@@ -75,7 +77,7 @@ const DOMMOdule = function (playerOne, playerTwo) {
 
         const { enemyGameBoard } = player;
         enemyGameBoard.getGameBoard().forEach((ship) => {
-            document.getElementById(container + '-' + (ship.startingPosition)).innerHTML = <div class="ship ${ship.axis} ${ship.axis}-ship-${ship.ship.length}"></div>;
+            document.getElementById(container + '-' + (ship.startingPosition)).innerHTML = `<div class="ship ${ship.axis} ${ship.axis}-ship-${ship.ship.length}"></div>`;
         });
         hideShipsBasedOnTurns();
     }
@@ -84,7 +86,7 @@ const DOMMOdule = function (playerOne, playerTwo) {
         if (playerOne.getTurn()) {
             // Hide Player two ships
             const playerTwoBoard = playerOne.enemyGameBoard;
-            const playerTwoShipsEl = document.querySelectorAll(#${playerTwoBoard.container} div.ship);
+            const playerTwoShipsEl = document.querySelectorAll(`#${playerTwoBoard.container} div.ship`);
             playerTwoShipsEl.forEach((shipEl) => {
                 shipEl.classList.add('hide-ship');
             });
@@ -92,7 +94,7 @@ const DOMMOdule = function (playerOne, playerTwo) {
 
             // Show Player One ships
             const playerOneBoard = playerTwo.enemyGameBoard;
-            const playerOneShipsEl = document.querySelectorAll(#${playerOneBoard.container} div.ship);
+            const playerOneShipsEl = document.querySelectorAll(`#${playerOneBoard.container} div.ship`);
             playerOneShipsEl.forEach((shipEl) => {
                 shipEl.classList.remove('hide-ship');
             });
@@ -101,14 +103,14 @@ const DOMMOdule = function (playerOne, playerTwo) {
         else if (playerTwo.getTurn()) {
             // Hide Player one ships
             const playerOneBoard = playerTwo.enemyGameBoard;
-            const playerOneShipsEl = document.querySelectorAll(#${playerOneBoard.container} div.ship);
+            const playerOneShipsEl = document.querySelectorAll(`#${playerOneBoard.container} div.ship`);
             playerOneShipsEl.forEach((shipEl) => {
                 shipEl.classList.add('hide-ship');
             });
 
             // Show Player two ships
             const playerTwoBoard = playerOne.enemyGameBoard;
-            const playerTwoShipsEl = document.querySelectorAll(#${playerTwoBoard.container} div.ship);
+            const playerTwoShipsEl = document.querySelectorAll(`#${playerTwoBoard.container} div.ship`);
             playerTwoShipsEl.forEach((shipEl) => {
                 shipEl.classList.remove('hide-ship');
             });
@@ -121,9 +123,10 @@ const DOMMOdule = function (playerOne, playerTwo) {
 };
 
 export const renderHitBoard = (boardContainer, position) => {
-    document.getElementById(${boardContainer}-${position}).classList.add('hit')
+    document.getElementById(`${boardContainer}-${position}`).classList.add('hit')
 }
 export const renderMissBoard = (boardContainer, position) => {
-    document.getElementById(${boardContainer}-${position}).classList.add('miss')
+    document.getElementById(`${boardContainer}-${position}`).classList.add('miss')
 }
+
 export default DOMMOdule;

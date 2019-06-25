@@ -1,91 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>BattleShp</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <style>
-            .hit{
-                background-image: url("dist/images/cross.png");
-            }
-            .box{
+<head>
+    <meta charset="UTF-8">
+    <title>BattleShp</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .miss{
+            background-image: url("dist/images/dot.png");
+            background-size: 30%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .hit{
+            background-image: url("dist/images/cross.png");
+            background-size: contain;
+        }
+        .box{
 
-                border-color: #e0e0e0;
-                border-width: 1px;
-                border-style: solid;
-                border-radius: 7px;
-                text-align: center;
-                padding: 1.3rem;
-            }
-            .vertical{
-                width: 105%;
-            }
-            .vertical-ship-1{
-                height: 105%;
-            }
-            .vertical-ship-2{
-                height: 210%;
-            }
-            .vertical-ship-3{
-                height: 315%;
-            }
-            .horizontal {
-                height: 105%;
-            }
-            .horizontal-ship-1 {
-                width: 105%;
-            }
-            .horizontal-ship-2 {
-                width: 210%;
-            }
-            .horizontal-ship-3 {
-                width: 315%;
-            }
-            .ship{
+            border-color: #e0e0e0;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 7px;
+            text-align: center;
+            padding: 1.3rem;
+        }
+        .vertical{
+            width: 105%;
+        }
+        .vertical-ship-1{
+            height: 105%;
+        }
+        .vertical-ship-2{
+            height: 210%;
+        }
+        .vertical-ship-3{
+            height: 315%;
+        }
+        .horizontal {
+            height: 105%;
+        }
+        .horizontal-ship-1 {
+            width: 105%;
+        }
+        .horizontal-ship-2 {
+            width: 210%;
+        }
+        .horizontal-ship-3 {
+            width: 315%;
+        }
+        .ship{
 
-                border-radius: 7px;
-                opacity: 0.7;
-                border-style: solid;
-                position: absolute;
-                border-width: 2px;
-                border-color: #a94442;
-                left: 0;
-                bottom: 0;
-                top: 0;
-                z-index: 1000;
+            border-radius: 7px;
+            opacity: 0.7;
+            border-style: solid;
+            position: absolute;
+            border-width: 2px;
+            border-color: #a94442;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            z-index: 1000;
 
-            }
+        }
+        .hide-ship{
+            border-color: transparent;
+            position: inherit;
+        }
 
-        </style>
-    </head>
-    <body>
-        <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Battleship</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Reset <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Start</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-        <div class="container">
-            <br>
-            <div class="row">
-                <div class="col-6" id="enemy-half"></div>
-                <div class="col-6" id="human-half"></div>
+    </style>
+</head>
+<body>
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Battleship</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+</div>
+<div class="container">
+    <br/>
+    <div class="row">
+        <div class="offset-3 col-2">
+            <div id="player-one-board" class="alert alert-dark" role="alert">
+                Player One
             </div>
-
         </div>
-        <script src="dist/main.js"></script>
-    </body>
+        <div class="col-1">VS</div>
+        <div class="col-2">
+            <div  id="player-two-board"class="alert alert-dark" role="alert">
+                Player Two
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-6" id="player-one"></div>
+        <div class="col-6" id="player-two"></div>
+    </div>
+
+</div>
+<script src="dist/main.js"></script>
+</body>
 </html>
