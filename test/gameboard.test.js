@@ -1,5 +1,4 @@
 import GameboardFactory from '../src/GameboardFactory';
-import { GRID } from "../src/config";
 
 test("Create empty gameboard", function () {
     const  gameboard = GameboardFactory();

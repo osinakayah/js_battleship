@@ -1,5 +1,4 @@
 import ShipFactory from '../src/ShipFactory';
-import CellFactory from '../src/CellFactory';
 
 import {VERTICAL, HORIZONTAL } from '../src/config';
 test('Created a ship HORIZONTAL object', () => {
@@ -12,7 +11,7 @@ test('Created a ship HORIZONTAL object', () => {
 
     ship.setPosition(17, HORIZONTAL);
 
-    expect(ship.positions).toEqual([CellFactory(17, false), CellFactory(18, false)])
+    expect(ship.positions).toEqual([17, 18])
 
     expect(ship.positions.length).toBe(2)
 
@@ -27,7 +26,7 @@ test('Created a ship VERTICAL object', function() {
     expect(ship).toHaveProperty('positions');
     expect(ship.positions).toEqual([])
     ship.setPosition(0, VERTICAL);
-    expect(ship.positions).toEqual([CellFactory(0, false),CellFactory(10, false),CellFactory(20, false)])
+    expect(ship.positions).toEqual([0, 10, 20,])
     expect(ship.positions.length).toBe(3)
 
     expect(ship.hit).toBeInstanceOf(Function);

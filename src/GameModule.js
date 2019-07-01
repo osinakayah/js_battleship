@@ -1,4 +1,5 @@
 import  PlayerFactory from './PlayerFactory'
+import  ComputerPlayer from './ComputerPlayer'
 import DOMModule from './DOMModule';
 import GameBoardFactory from "./GameboardFactory";
 const GameModule = function () {
@@ -10,7 +11,8 @@ const GameModule = function () {
 
 
 
-    const playerOne = PlayerFactory(playerTwoBoard, "Player One");
+    const playerOne = ComputerPlayer(playerTwoBoard, "Player One");
+    // const playerOne = PlayerFactory(playerTwoBoard, "Player One");
     const playerTwo = PlayerFactory(playerOneBoard, "Player Two");
 
     const domModule = DOMModule(playerOne, playerTwo);

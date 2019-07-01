@@ -18,6 +18,9 @@ const PlayerFactory = function (enemyGameBoard, name) {
         isClient = _isClient;
     }
 
+    const setGameBoard = (_setGameBoard) => enemyGameBoard = _setGameBoard;
+    const getGameBoard = () => enemyGameBoard
+
     const getClient = () => isClient;
 
 
@@ -28,7 +31,10 @@ const PlayerFactory = function (enemyGameBoard, name) {
       enemyGameBoard,
       getClient,
       setClient,
-      toggleTurn
+      toggleTurn,
+      setGameBoard,
+      getGameBoard,
+      isTurn
   }
 };
 

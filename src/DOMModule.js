@@ -20,24 +20,25 @@ const DOMMOdule = function (playerOne, playerTwo) {
         // Only set the event on the opponent board;
 
         document.getElementById(boardContainer).addEventListener('click', function (e) {
-            const position = (e.target.getAttribute('data-position'));
 
-            if (position) {
-
-                if (playerTwo.getTurn()) {
-                    if (playerTwo.play(position)){
-                        // SO a player can play again, dont toggle places
-                        return;
-                    }
-                }
-                else {
-                    if(playerOne.play(position)){
-                        return;
-                    }
+            if (playerTwo.getTurn()) {
+                const position = (e.target.getAttribute('data-position'));
+                if (playerTwo.play(position) && position){
+                    // SO a player can play again, dont toggle places
+                    return;
                 }
                 playerOne.toggleTurn();
                 playerTwo.toggleTurn();
-                playerTwo.getTurn() ? alert('Player Two turn'): alert('Player One turn')
+                hideShipsBasedOnTurns();
+            }
+            else if (playerOne.getTurn()) {
+                const position = (e.target.getAttribute('data-position'));
+                if (playerOne.play(position) && position){
+                    // SO a player can play again, dont toggle places
+                    return;
+                }
+                playerOne.toggleTurn();
+                playerTwo.toggleTurn();
                 hideShipsBasedOnTurns();
             }
 
@@ -123,9 +124,11 @@ const DOMMOdule = function (playerOne, playerTwo) {
 };
 
 export const renderHitBoard = (boardContainer, position) => {
+
     document.getElementById(`${boardContainer}-${position}`).classList.add('hit')
 }
 export const renderMissBoard = (boardContainer, position) => {
+
     document.getElementById(`${boardContainer}-${position}`).classList.add('miss')
 }
 
