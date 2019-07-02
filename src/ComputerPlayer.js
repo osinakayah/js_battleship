@@ -5,10 +5,10 @@ const ComputerPlayerFactory = function (enemyGameBoard, name) {
     const computerPlayer = Object.assign(PlayerFactory(enemyGameBoard, name));
     const positionsPlayed = [];
     computerPlayer.play = () => {
-
-        let position = Math.floor(Math.random() * ((GRID * GRID)+1));
+        console.log("Computer played");
+        let position = Math.floor(Math.random() * ((GRID * GRID)));
         while (positionsPlayed.includes(position)) {
-            position = Math.floor(Math.random() * ((GRID * GRID)+1));
+            position = Math.floor(Math.random() * ((GRID * GRID)));
         }
         positionsPlayed.push(position)
         const isHit = computerPlayer.enemyGameBoard.receiveAttack(position)
@@ -20,6 +20,7 @@ const ComputerPlayerFactory = function (enemyGameBoard, name) {
         if (isHit) {
             computerPlayer.play();
         }
+
         return isHit;
     }
 

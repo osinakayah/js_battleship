@@ -20,27 +20,17 @@ const DOMMOdule = function (playerOne, playerTwo) {
         // Only set the event on the opponent board;
 
         document.getElementById(boardContainer).addEventListener('click', function (e) {
+            const position = (e.target.getAttribute('data-position'));
+            if (position) {
+                if (playerTwo.getTurn()) {
+                    playerTwo.play(position)
+                }
+                else if (playerOne.getTurn()) {
+                    playerOne.play(position)
+                }
+            }
 
-            if (playerTwo.getTurn()) {
-                const position = (e.target.getAttribute('data-position'));
-                if (playerTwo.play(position) && position){
-                    // SO a player can play again, dont toggle places
-                    return;
-                }
-                playerOne.toggleTurn();
-                playerTwo.toggleTurn();
-                hideShipsBasedOnTurns();
-            }
-            else if (playerOne.getTurn()) {
-                const position = (e.target.getAttribute('data-position'));
-                if (playerOne.play(position) && position){
-                    // SO a player can play again, dont toggle places
-                    return;
-                }
-                playerOne.toggleTurn();
-                playerTwo.toggleTurn();
-                hideShipsBasedOnTurns();
-            }
+
 
         }, false);
 
@@ -118,18 +108,31 @@ const DOMMOdule = function (playerOne, playerTwo) {
         }
     }
 
+    const renderHitBoard = (boardContainer, position) => {
+
+        document.getElementById(`${boardContainer}-${position}`).classList.add('hit')
+    }
+    const renderMissBoard = (boardContainer, position) => {
+        playerOne.toggleTurn();
+        playerTwo.toggleTurn();
+        hideShipsBasedOnTurns();
+        document.getElementById(`${boardContainer}-${position}`).classList.add('miss')
+    }
+
     return {
-        init
+        init,
+        renderHitBoard,
+        renderMissBoard
     }
 };
-
-export const renderHitBoard = (boardContainer, position) => {
-
-    document.getElementById(`${boardContainer}-${position}`).classList.add('hit')
-}
-export const renderMissBoard = (boardContainer, position) => {
-
-    document.getElementById(`${boardContainer}-${position}`).classList.add('miss')
-}
+//
+// export const renderHitBoard = (boardContainer, position) => {
+//
+//     document.getElementById(`${boardContainer}-${position}`).classList.add('hit')
+// }
+// export const renderMissBoard = (boardContainer, position) => {
+//
+//     document.getElementById(`${boardContainer}-${position}`).classList.add('miss')
+// }
 
 export default DOMMOdule;
